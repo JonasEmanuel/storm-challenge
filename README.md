@@ -1,6 +1,6 @@
 # DESAFIO STORM SECURITY
 
-Para rodar o projeto faça:
+**Para rodar o projeto faça:**
 - Abra o terminal na raiz do projeto
 - Execute o comando npm i
 - Execute o comando npm start
