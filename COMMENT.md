@@ -1,0 +1,4 @@
+- Será utilizado o framework VueJS para o desenvolvimento da parte de front-end.
+- Será utilizado o framework ExpressJS para o desenvolvimento da parte de back-end.
+- Alguns padrões de projetos estão utilizados no projeto são eles Singleton e o padrão Repository.
+- 

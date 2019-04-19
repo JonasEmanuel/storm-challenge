@@ -1,5 +1,6 @@
 export default class Resource {
-    constructor(type, price) {
+    constructor(_id, type, price) {
+        this._id = _id;
         this.type = type;
         this.price = price;
     }

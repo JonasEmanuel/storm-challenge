@@ -1,11 +1,13 @@
 import * as resourceController from '../controllers/resource.controller';
 
 const resourceRoutes = (app) => {
-    app.get('/resource', resourceController.findAll);
-    app.get('/resource/:id', resourceController.find);
-    app.post('/resource', resourceController.update);
-    app.put('/resource', resourceController.create);
-    app.delete('/resouce', resourceController.delete)
+    app.route('/resource')
+        .get(resourceController.findAll)
+        .post(resourceController.update)
+        .put(resourceController.create);
+    app.route('/resource/:id')
+        .get(resourceController.find)
+        .delete(resourceController.remove);
 }
 
 export default resourceRoutes;

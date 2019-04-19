@@ -1,4 +1,5 @@
 import DatabaseManager from "../application/DatabaseManager";
+import { ObjectId } from 'mongodb';
 
 export default class DefaultRepository {
     constructor (modelName) {
@@ -11,7 +12,7 @@ export default class DefaultRepository {
             let collection = database.collection(this.modelName);
             collection.insert(document, (err, result) => {
                 if(!err){
-                    resolve(result);
+                    resolve(result.ops);
                 } else {
                     reject(err);
                 }
@@ -37,7 +38,7 @@ export default class DefaultRepository {
         let database = await DatabaseManager.getConnection();
         return new Promise((resolve, reject) => {
             let collection = database.collection(this.modelName);
-            collection.find({ _id }).toArray((err, result) => {
+            collection.find({ _id: ObjectId(_id) }).toArray((err, result) => {
                 if(!err){
                     resolve(result);
                 } else {
@@ -51,7 +52,7 @@ export default class DefaultRepository {
         let database = await DatabaseManager.getConnection();
         return new Promise((resolve, reject) => {
             let collection = database.collection(this.modelName);
-            collection.updateOne({ _id: document._id }, { $set: document }, (err, result) => {
+            collection.updateOne({ _id: ObjectId(_id) }, { $set: document }, (err, result) => {
                 if(!err){
                     resolve(result);
                 } else {
@@ -65,7 +66,7 @@ export default class DefaultRepository {
         let database = await DatabaseManager.getConnection();
         return new Promise((resolve, reject) => {
             let collection = database.collection(this.modelName);
-            collection.updateOne({ _id }, (err, result) => {
+            collection.deleteOne({ _id: ObjectId(_id) }, (err, result) => {
                 if(!err){
                     resolve(result);
                 } else {
