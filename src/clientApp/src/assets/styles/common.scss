@@ -1,0 +1,46 @@
+button.btn, a.btn {
+    width: 160px;
+    height: 45px;
+    color: white;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+    border: none;
+    text-transform: uppercase;
+    border-radius: 4px;
+
+    i {
+        margin-right: 0.5em;
+    }
+}
+
+button.btn:hover {
+    transform: scale(1.1);
+}
+
+h1 {
+    color: #378bab;
+}
+
+table {
+    border: 1px solid #b1b1b3e0;
+    border-collapse: collapse;
+    width: 100%;
+    text-align: left;
+
+    thead, tbody {
+        th, td {
+            height: 1.5em;
+            border: 1px solid #b1b1b3e0;
+            padding: 0.5em;
+        }
+    }
+    tbody {
+        td {
+            height: 1em;
+        }
+    }
+}
+
+.btn.primary {
+    background-color: #378bab;
+}
