@@ -13,20 +13,21 @@ export default class Application {
     constructor() { 
         this.app = express();
         this.router = express.Router();
-        this.connectionString = process.env.DATABASE_CONNECTION_STRING;
-        this.databaseName = process.env.DATABASE_NAME;
+        this.connectionString = "mongodb+srv://root:root@cluster0-bzgfm.mongodb.net";
+        this.databaseName = "stormChallenge";
+        this.port = 9000;
     }
 
     init() {
         this.app.use(bodyParser.urlencoded({ extended: true }));
         this.app.use(bodyParser.json());
         this.app.use(cors());
-        this.app.use(express.static(path.join(__dirname, './src/clientApp/dist'), { maxAge: 86400000 })); 
+        this.app.use(express.static('./src/clientApp/dist'), { maxAge: 86400000 })); 
         
         this.loadRoutes();
         this.connectDatabase();
 
-        this.app.listen(process.env.PORT, () => {
+        this.app.listen(this.port, () => {
             console.log(`Server running on http://localhost:${process.env.PORT}/`);
         });
     }
