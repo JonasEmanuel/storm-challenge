@@ -2,6 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import { MongoClient } from 'mongodb';
 import cors from 'cors';
+import path from 'path';
 
 import orderRoute from '../routes/order.route';
 import resourceRoutes from '../routes/resource.route';
@@ -20,12 +21,12 @@ export default class Application {
         this.app.use(bodyParser.urlencoded({ extended: true }));
         this.app.use(bodyParser.json());
         this.app.use(cors());
-        this.app.use(express.static('./src/clientApp/dist')); 
-
+        this.app.use(express.static(`./src/clientApp/dist`)); 
+        
         this.loadRoutes();
         this.connectDatabase();
 
-        this.app.listen(9200, () => {
+        this.app.listen(process.env.PORT, () => {
             console.log(`Server running on http://localhost:${process.env.PORT}/`);
         });
     }

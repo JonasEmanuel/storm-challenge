@@ -8,7 +8,7 @@ Vue.config.productionTip = false
 
 Vue.use(VueRouter);
 
-axios.defaults.baseURL = window.location.origin;
+axios.defaults.baseURL = `${window.location.origin}/api`;
 
 new Vue({
   router: new VueRouter({ routes }),
