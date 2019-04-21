@@ -21,7 +21,7 @@ export default class Application {
         this.app.use(bodyParser.urlencoded({ extended: true }));
         this.app.use(bodyParser.json());
         this.app.use(cors());
-        this.app.use(express.static(path.join(__dirname, './src/clientApp/dist'), { maxAge: 86400000 }))); 
+        this.app.use(express.static(path.join(__dirname, './src/clientApp/dist'), { maxAge: 86400000 })); 
         
         this.loadRoutes();
         this.connectDatabase();
