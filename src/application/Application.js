@@ -27,7 +27,7 @@ export default class Application {
         this.loadRoutes();
         this.connectDatabase();
 
-        this.app.listen(this.port, () => {
+        this.app.listen(process.env.PORT || this.port, () => {
             console.log(`Server running on http://localhost:${process.env.PORT}/`);
         });
     }
