@@ -17,7 +17,7 @@
           <td>{{order.total | toCurrency}}</td>
         </tr>
         <tr v-show="orders.length == 0 && !flags.isLoading">
-          <td colspan="3">Nenhum pedido cadastrado</td>
+          <td colspan="3" class="center">Nenhum pedido cadastrado</td>
         </tr>
         <tr v-show="flags.isLoading">
           <td colspan="3" class="center"><Spinner></Spinner></td>

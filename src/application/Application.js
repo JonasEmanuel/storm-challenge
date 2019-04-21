@@ -42,7 +42,6 @@ export default class Application {
         MongoClient.connect(this.connectionString, { useNewUrlParser: true }, (err, client) => {
             if(!err){
                 console.log("MongoDB - OK");
-                client.close();
             } else {
                 console.log(err);
             }

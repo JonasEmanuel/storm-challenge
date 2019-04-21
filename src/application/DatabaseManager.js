@@ -10,10 +10,13 @@ export default class DatabaseManager {
             if(this.connection){
                 resolve(this.connection);
             } else {
-                MongoClient.connect('mongodb+srv://root:root@maincluster-bzgfm.mongodb.net', { useNewUrlParser: true }, (err, client) => {  
+                MongoClient.connect('mongodb+srv://root:root@maincluster-bzgfm.mongodb.net/test?retryWrites=true', { useNewUrlParser: true }, (err, client) => {  
                     this.connection = client.db('stormChallenge');
-                    resolve(this.connection);
-                    client.close();
+                    if(!err){
+                        resolve(this.connection);
+                    } else {
+                        reject(err);
+                    }
                 });
             }
         })
