@@ -14,7 +14,8 @@ export async function findAll(request, response) {
 
 export async function create(request, response) {
     let resource = new Resource();
-    resource.price = request.body.price;
+    resource.name = request.body.name;
+    resource.value = request.body.value;
     resource.type = request.body.type;
     try {
         let createdResource = await resourceRepository.add(resource);
@@ -37,6 +38,7 @@ export async function update(request, response) {
     let resource = new Resource();
     resource._id = request.body._id;
     resource.price = request.body.price;
+    resource.value = request.body.value;
     resource.type = request.body.type;
     try {
         await resourceRepository.update(resource);

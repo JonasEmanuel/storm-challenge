@@ -13,6 +13,28 @@ button.btn, a.btn {
     }
 }
 
+select.custom-form, input.custom-form {
+    width: 150px;
+    border: 1px solid #d8d8d8cc;
+    height: 35px;
+    margin: 5px;
+    border-radius: 3px;
+}
+
+i{
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+}
+
+i:hover {
+    transform: scale(1.1);
+}
+
+input[type='number'].custom-form{
+    width: 55px;
+    text-align: right;
+}
+
 button.btn:hover {
     transform: scale(1.1);
 }
@@ -43,4 +65,20 @@ table {
 
 .btn.primary {
     background-color: #378bab;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition-duration: 0.3s;
+  transition-property: opacity;
+  transition-timing-function: ease;
+}
+
+.fade-enter,
+.fade-leave-active {
+  opacity: 0
+}
+
+.center {
+    text-align: center !important;
 }

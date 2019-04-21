@@ -1,32 +1,39 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import { MongoClient } from 'mongodb';
+import cors from 'cors';
 
-import resourceRoute from '../routes/resource.route';
+import orderRoute from '../routes/order.route';
 import resourceRoutes from '../routes/resource.route';
+
+require('dotenv').config();
 
 export default class Application {
     constructor() { 
         this.app = express();
-        this.connectionString = 'mongodb://localhost:27017';
-        this.databaseName = 'stormChallenge';
+        this.router = express.Router();
+        this.connectionString = process.env.DATABASE_CONNECTION_STRING;
+        this.databaseName = process.env.DATABASE_NAME;
     }
 
     init() {
         this.app.use(bodyParser.urlencoded({ extended: true }));
         this.app.use(bodyParser.json());
+        this.app.use(cors());
+        this.app.use(express.static('./src/clientApp/dist')); 
 
         this.loadRoutes();
         this.connectDatabase();
 
-        this.app.listen(6000, () => {
-            console.log(`Server running on http://localhost:6000/`);
+        this.app.listen(9200, () => {
+            console.log(`Server running on http://localhost:${process.env.PORT}/`);
         });
     }
 
     loadRoutes(){
-        resourceRoutes(this.app);
-        //requestRoute(this.app);
+        this.app.use('/api', this.router);
+        resourceRoutes(this.router);
+        orderRoute(this.router);
     }
 
     connectDatabase() {

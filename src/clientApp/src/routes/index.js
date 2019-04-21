@@ -1,9 +1,9 @@
-import Request from '../components/Request.vue';
-import Requests from '../components/Requests.vue';
+import Order from '../components/pages/Order.vue';
+import Orders from '../components/pages/Orders.vue';
 
 const routes = [
-    { path: '/', component: Requests },
-    { path: '/request', component: Request }
+    { path: '/', component: Orders },
+    { path: '/order', component: Order }
 ];
 
 export default routes;

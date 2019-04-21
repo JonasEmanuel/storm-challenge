@@ -2,7 +2,9 @@
   <div id="app">
     <NavBar></NavBar>
     <div class="content">
-      <router-view></router-view>
+      <transition name="fade" mode="out-in">
+        <router-view/>
+      </transition>
     </div>
   </div>
 </template>
@@ -11,7 +13,7 @@
 import './assets/styles/style.scss';
 import './assets/styles/common.scss';
 
-import NavBar from './components/NavBar'
+import NavBar from './components/shared/NavBar'
 
 export default {
   name: 'app',
