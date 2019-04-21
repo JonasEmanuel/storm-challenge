@@ -2,12 +2,9 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import { MongoClient } from 'mongodb';
 import cors from 'cors';
-import path from 'path';
 
 import orderRoute from '../routes/order.route';
 import resourceRoutes from '../routes/resource.route';
-
-require('dotenv').config();
 
 export default class Application {
     constructor() { 
@@ -28,7 +25,7 @@ export default class Application {
         this.loadRoutes();
 
         this.app.listen(process.env.PORT || this.port, () => {
-            console.log(`Server running on http://localhost:${this.port}/`);
+            console.log(`Server running on port ${this.port}/`);
         });
     }
 
@@ -46,5 +43,13 @@ export default class Application {
                 console.log(err);
             }
         });
+    }
+
+    static getConfig() {
+        return {
+            port: this.port,
+            connectionString: this.connectionString,
+            databaseName: this.databaseName
+        }
     }
 }

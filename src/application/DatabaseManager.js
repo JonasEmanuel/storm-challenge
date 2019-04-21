@@ -1,4 +1,5 @@
 import { MongoClient } from 'mongodb';
+import Application from './Application';
 
 export default class DatabaseManager {
     constructor() {
@@ -10,8 +11,8 @@ export default class DatabaseManager {
             if(this.connection){
                 resolve(this.connection);
             } else {
-                MongoClient.connect('mongodb+srv://root:root@maincluster-bzgfm.mongodb.net/test?retryWrites=true', { useNewUrlParser: true }, (err, client) => {  
-                    this.connection = client.db('stormChallenge');
+                MongoClient.connect(Application.getConfig().connectionString, { useNewUrlParser: true }, (err, client) => {  
+                    this.connection = client.db(Application.getConfig().databaseName);
                     if(!err){
                         resolve(this.connection);
                     } else {
