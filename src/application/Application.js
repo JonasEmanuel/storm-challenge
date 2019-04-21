@@ -47,9 +47,9 @@ export default class Application {
 
     static getConfig() {
         return {
-            port: this.port,
-            connectionString: this.connectionString,
-            databaseName: this.databaseName
+            port: 9000,
+            connectionString: "mongodb+srv://root:root@maincluster-bzgfm.mongodb.net",
+            databaseName: "stormChallenge"
         }
     }
 }
