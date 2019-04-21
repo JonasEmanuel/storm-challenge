@@ -6,3 +6,6 @@
 - Execute o comando npm start
 
 OBS: É preciso que haja o MongoDB rodando na máquina.
+
+**A aplicação está disponível em:**
+https://storm-challenge.herokuapp.com

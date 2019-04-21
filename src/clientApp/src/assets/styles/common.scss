@@ -82,3 +82,27 @@ table {
 .center {
     text-align: center !important;
 }
+
+.modal {
+    width: 40vw;
+    height: 21vw;
+    position: absolute;
+    border: 1px solid #d6d6d675;
+    left: 0;
+    border-radius: 5px;
+    right: 0;
+    background-color: white;
+    transform: translateY(-50%);
+    z-index: 100;
+    margin: 0 auto;
+    box-shadow: 1px 1px 6px 0px;
+    top: 50%;
+
+    i {
+        margin-bottom: 0.3em;
+    }
+
+    div {
+        font-size: 15px;
+    }
+}

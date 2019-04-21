@@ -25,7 +25,6 @@ export default class DefaultRepository {
         return new Promise((resolve, reject) => {
             let collection = database.collection(this.modelName);
             collection.find({}).toArray((err, result) => {
-                console.log(err)
                 if(!err){
                     resolve(result);
                 } else {

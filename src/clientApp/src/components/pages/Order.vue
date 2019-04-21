@@ -1,5 +1,9 @@
 <template>
     <div id="order">
+        <div class="modal" v-show="modalSuccess">
+            <i class="far fa-check-circle"></i>
+            <div>Orçamento concluído com sucesso. Redirecionando em 2 segundos...</div>
+        </div>
         <div v-show="!flags.isLoading" class="resources-box">
             <div class="resources" v-show="!flags.isLoading">
                 <div class="resource" v-for="orderItem in order.itens" :key="orderItem.resourceTypeName">
@@ -47,7 +51,8 @@ export default {
             resourceTypes: [],
             flags: {
                 isLoading: false
-            }
+            },
+            modalSuccess: false
         }
     },
     components:{
@@ -71,13 +76,20 @@ export default {
     },
     methods: {
         async saveOrder(){
-            this.order.totalResources = _sum(this.order.itens, (item) => parseInt(item.resourceQuantity));
-            this.order.total = _sum(this.order.itens, (item) => parseFloat(item.total));
-            if(this.order.totalResources > 0){
-                await axios.put('/order', this.order);
-                this.$router.push('/');
-            } else {
-                alert("Nenhum recurso selecionado");
+            let confirmOrder = confirm("Deseja concluir seu orçamento?");
+            if(confirmOrder){
+                this.order.totalResources = _sum(this.order.itens, (item) => parseInt(item.resourceQuantity));
+                this.order.total = _sum(this.order.itens, (item) => parseFloat(item.total));
+                if(this.order.totalResources > 0){
+                    await axios.put('/order', this.order);
+                    this.modalSuccess = true;
+                    setTimeout(() => {
+                        this.modalSuccess = false;
+                        this.$router.push('/');
+                    }, 2000);
+                } else {
+                    alert("Nenhum recurso selecionado");
+                }
             }
         },
         calcOrderValue(orderItem){ 
@@ -138,5 +150,14 @@ export default {
             }
         }
     }
+}
+.modal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #378bab;
+    font-size: 7em;
+    margin-bottom: 0.2em;
 }
 </style>
