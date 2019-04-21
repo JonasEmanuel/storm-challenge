@@ -13,7 +13,7 @@ export default class Application {
     constructor() { 
         this.app = express();
         this.router = express.Router();
-        this.connectionString = "mongodb+srv://root:root@cluster0-bzgfm.mongodb.net";
+        this.connectionString = "mongodb+srv://root:root@maincluster-bzgfm.mongodb.net";
         this.databaseName = "stormChallenge";
         this.port = 9000;
     }
@@ -42,6 +42,7 @@ export default class Application {
         MongoClient.connect(this.connectionString, { useNewUrlParser: true }, (err, client) => {
             if(!err){
                 console.log("MongoDB - OK");
+                client.close();
             } else {
                 console.log(err);
             }

@@ -13,6 +13,7 @@ export default class DatabaseManager {
                 MongoClient.connect('mongodb://localhost:27017', { useNewUrlParser: true }, (err, client) => {  
                     this.connection = client.db('stormChallenge');
                     resolve(this.connection);
+                    client.close();
                 });
             }
         })
