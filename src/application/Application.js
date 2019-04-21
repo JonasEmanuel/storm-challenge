@@ -22,13 +22,13 @@ export default class Application {
         this.app.use(bodyParser.urlencoded({ extended: true }));
         this.app.use(bodyParser.json());
         this.app.use(cors());
-        //this.app.use(express.static('./src/clientApp/dist')); 
+        this.app.use('/', express.static('./src/clientApp/dist')); 
         
-        this.loadRoutes();
         this.connectDatabase();
+        this.loadRoutes();
 
-        this.app.listen(process.env.PORT || this.port, () => {
-            console.log(`Server running on http://localhost:${process.env.PORT}/`);
+        this.app.listen(this.port, () => {
+            console.log(`Server running on http://localhost:${this.port}/`);
         });
     }
 
@@ -42,6 +42,8 @@ export default class Application {
         MongoClient.connect(this.connectionString, { useNewUrlParser: true }, (err, client) => {
             if(!err){
                 console.log("MongoDB - OK");
+            } else {
+                console.log(err);
             }
         });
     }
