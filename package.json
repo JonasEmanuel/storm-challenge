@@ -11,10 +11,6 @@
     "type": "git",
     "url": "git+https://github.com/JonasEmanuel/storm-challenge.git"
   },
-  "engines": {
-    "node": "0.10.x",
-    "npm": "1.2.30"
-  }, 
   "author": "Jonas Emanuel",
   "license": "ISC",
   "bugs": {
