@@ -1,12 +1,12 @@
 import * as orderController from '../controllers/order.controller';
 
 const resourceRoutes = (router) => {
-    let orderRoute = router.route('/order');
-    let orderIdRoute = router.route('/order/:id');
+    let orderRoute = router.route('/orders');
+    let orderIdRoute = router.route('/orders/:id');
     
     orderRoute.get(orderController.findAll)
-    orderRoute.post(orderController.update)
-    orderRoute.put(orderController.create);
+    orderRoute.put(orderController.update)
+    orderRoute.post(orderController.create);
     orderIdRoute.get(orderController.find)
     orderIdRoute.delete(orderController.remove);
 }

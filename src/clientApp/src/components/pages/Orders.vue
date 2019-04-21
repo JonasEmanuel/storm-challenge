@@ -47,7 +47,7 @@ export default {
   },
   async created(){
     this.flags.isLoading = true;
-    let orders = await axios.get('/order');
+    let orders = await axios.get('/orders');
     this.flags.isLoading = false;
     this.orders = orders.data;
   },

@@ -1,12 +1,12 @@
 import * as resourceController from '../controllers/resource.controller';
 
 const resourceRoutes = (router) => {
-    let resourceRoute = router.route('/resource');
-    let resourceIdRoute = router.route('/resource/:id');
+    let resourceRoute = router.route('/resources');
+    let resourceIdRoute = router.route('/resources/:id');
     
     resourceRoute.get(resourceController.findAll)
-    resourceRoute.post(resourceController.update)
-    resourceRoute.put(resourceController.create);
+    resourceRoute.put(resourceController.update)
+    resourceRoute.post(resourceController.create);
     resourceIdRoute.get(resourceController.find)
     resourceIdRoute.delete(resourceController.remove);
 }

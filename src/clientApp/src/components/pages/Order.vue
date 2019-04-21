@@ -60,7 +60,7 @@ export default {
     },
     async created(){
         this.flags.isLoading = true;
-        let resources = await axios.get('/resource');
+        let resources = await axios.get('/resources');
         this.flags.isLoading = false;
         this.resourceTypes = resources.data;
 
@@ -81,7 +81,7 @@ export default {
                 this.order.totalResources = _sum(this.order.itens, (item) => parseInt(item.resourceQuantity));
                 this.order.total = _sum(this.order.itens, (item) => parseFloat(item.total));
                 if(this.order.totalResources > 0){
-                    await axios.put('/order', this.order);
+                    await axios.post('/orders', this.order);
                     this.modalSuccess = true;
                     setTimeout(() => {
                         this.modalSuccess = false;
