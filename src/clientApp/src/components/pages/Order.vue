@@ -94,14 +94,21 @@ export default {
         },
         calcOrderValue(orderItem){ 
             if(orderItem.period && orderItem.resourceQuantity){
-                let percentToSum = 0;
-                if(orderItem.period <= 3){
-                    percentToSum = 0.20;
-                } else if(orderItem.period >= 4 && orderItem.period <= 6){
-                    percentToSum = 0.10;
+                orderItem.total = 0;
+                if(orderItem.period == 12 && orderItem.resourceQuantity >= 3){
+                    orderItem.total = (orderItem.period * parseFloat(orderItem.resourceValue));
+                    orderItem.total = orderItem.total * orderItem.resourceQuantity;
+                    orderItem.total = orderItem.total - (orderItem.resourceValue * 0.10) * orderItem.resourceQuantity;
+                } else {
+                    let percentToSum = 0;
+                    if(orderItem.period <= 3){
+                        percentToSum = 0.20;
+                    } else if(orderItem.period >= 4 && orderItem.period <= 6){
+                        percentToSum = 0.10;
+                    }
+                    orderItem.total = (orderItem.period * parseFloat(orderItem.resourceValue)) + (orderItem.resourceValue * percentToSum);
+                    orderItem.total = orderItem.total * orderItem.resourceQuantity;
                 }
-                orderItem.total = (orderItem.period * parseFloat(orderItem.resourceValue)) + (orderItem.resourceValue * percentToSum);
-                orderItem.total = orderItem.total * orderItem.resourceQuantity;
             }    
         }
     },
